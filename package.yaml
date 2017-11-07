@@ -1,0 +1,17 @@
+name:                adventer-bot
+version:             0.1.0.0
+homepage:            https://github.com/matsubara0507/adventer-bot#readme
+license:             MIT
+author:              MATSUBARA Nobutada
+copyright:           2017 MATSUBARA Nobutada
+category:            Web
+extra-source-files:
+- README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+
+executables:
+  adventer-bot:
+    source-dirs:      src
+    main:             Main.hs
