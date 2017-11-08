@@ -22,4 +22,10 @@ executable adventer-bot
       src
   build-depends:
       base >= 4.7 && < 5
+    , containers
+    , scalpel-core
+    , text
+  other-modules:
+      Scraper
+      Types
   default-language: Haskell2010
