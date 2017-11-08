@@ -21,7 +21,9 @@ executable adventer-bot
   hs-source-dirs:
       src
   build-depends:
-      base >= 4.7 && < 5
+      aeson
+    , base >= 4.7 && < 5
+    , bytestring
     , containers
     , scalpel-core
     , text

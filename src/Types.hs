@@ -1,6 +1,10 @@
+{-# LANGUAGE DeriveGeneric #-}
+
 module Types where
 
-import           Data.Text (Text)
+import           Data.Aeson   (FromJSON, ToJSON)
+import           Data.Text    (Text)
+import           GHC.Generics (Generic)
 
 data Entry = Entry
   { date    :: Date
@@ -8,8 +12,10 @@ data Entry = Entry
   , comment :: Text
   , title   :: Text
   , url     :: Url
-  } deriving (Show, Eq, Ord)
+  } deriving (Show, Eq, Ord, Generic)
+
+instance ToJSON Entry
+instance FromJSON Entry
 
 type Url = Text
-
 type Date = Text
