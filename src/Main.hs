@@ -25,13 +25,9 @@ main = do
   let
     oldCal = fromMaybe emptyCalender . decode . encodeUtf8 $ fromString jsonFile
     newCal = adventerScraper $ fromString htmlFile
-    message = unlines . filter ((/=) "") $
+    message = unlines . filter ("" /=) $
       (\date -> diffShow date oldCal newCal) <$> dates
     message' = if null message then "No update..." else message
-
-  -- print oldCal
-  -- print newCal
-  -- putsStrLn message
 
   result <- postMessage (pack token) "bot-test" (pack message')
   case result of
