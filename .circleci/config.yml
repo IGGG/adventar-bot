@@ -1,16 +1,19 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
-    docker:
-      - image: docker/compose
+    machine: true
     steps:
       - checkout
       - run:
-           name: Exec Bot
-           command: |
-            set -x
-            docker-compose up -d
+            name: login aws ecr
+            command: |
+                login="$(aws ecr get-login)"
+                ${login}
+      - run:
+            name: docker-compose up
+            command: |
+                 docker-compose -f ./docker-compose.yml up -d
+
 general:
   branches:
     only:
