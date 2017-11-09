@@ -11,22 +11,29 @@ import           Data.Text.Lazy.Encoding (encodeUtf8)
 import           Entry
 import           Scraper
 import           System.Environment      (getArgs)
+import Slack
 
 main :: IO ()
 main = do
-  [htmlPath, jsonPath] <- getArgs
+  [htmlPath, jsonPath, token] <- getArgs
   jsonFile <- readFile jsonPath
   htmlFile <- readFile htmlPath
 
   let
     oldCal = fromMaybe emptyCalender . decode . encodeUtf8 $ fromString jsonFile
     newCal = adventerScraper $ fromString htmlFile
+    message = unlines . filter ((/=) "") $
+      (\date -> diffShow date oldCal newCal) <$> dates
+    message' = if null message then "No update..." else message
 
   -- print oldCal
   -- print newCal
+  -- putsStrLn message
 
-  putStrLn . unlines . filter ((/=) "") $
-    (\date -> diffShow date oldCal newCal) <$> dates
+  result <- postMessage (pack token) "bot-test" (pack message')
+  case result of
+    Right _ -> putStrLn "Success!"
+    Left  e -> putStrLn $ "Error: " `mappend` unpack e
 
 dates :: [Date]
 dates = fmap (\n -> pack $ mconcat ["12/", twoDigit n, show n]) [1..25]
@@ -41,7 +48,7 @@ diffShow' :: Date -> DiffEntry -> String
 diffShow' date diffEntry =
   case diffEntry of
     NewEntry newEntry ->
-      mconcat [unpack date, " [New]    ", ppEntry newEntry]
+      mconcat [unpack date, " [New] ", ppEntry newEntry]
     UpdateBody newEntry ->
       mconcat [unpack date, " [Update] ", ppEntry newEntry]
     RemoveEntry oldEntry ->

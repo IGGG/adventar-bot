@@ -5,7 +5,7 @@ module Scraper where
 import           Control.Applicative    ((<|>))
 import qualified Data.HashMap.Strict    as HM
 import           Data.Maybe             (fromMaybe)
-import           Data.Text              (Text, pack, unpack)
+import           Data.Text              (Text)
 import           Entry
 import           Text.HTML.Scalpel.Core
 

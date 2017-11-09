@@ -8,11 +8,16 @@ category:            Web
 extra-source-files:
 - README.md
 
+ghc-options:
+  - -Wall
+
 dependencies:
   - aeson
   - base >= 4.7 && < 5
   - bytestring
+  - mtl
   - scalpel-core
+  - slack-api
   - text
   - unordered-containers
 

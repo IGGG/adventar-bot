@@ -1,6 +1,7 @@
 resolver: lts-9.12
 packages:
-- .
-extra-deps: []
+  - .
+extra-deps:
+  - slack-api-0.12
 flags: {}
 extra-package-dbs: []
