@@ -2,16 +2,19 @@
 
 module Main where
 
-import           Data.Aeson              (decode)
-import           Data.List               (intersperse)
-import           Data.Maybe              (fromMaybe)
-import           Data.String             (fromString)
-import           Data.Text               (pack, unpack)
-import           Data.Text.Lazy.Encoding (encodeUtf8)
+import           Data.Aeson               (decode)
+import           Data.Aeson.Encode.Pretty (encodePrettyToTextBuilder)
+import           Data.List                (intersperse)
+import           Data.Maybe               (fromMaybe)
+import           Data.String              (fromString)
+import           Data.Text                (pack, unpack)
+import           Data.Text.Lazy.Builder   (toLazyText)
+import           Data.Text.Lazy.Encoding  (encodeUtf8)
+import qualified Data.Text.Lazy.IO        as LT
 import           Entry
 import           Scraper
-import           System.Environment      (getArgs)
-import Slack
+import           Slack
+import           System.Environment       (getArgs)
 
 main :: IO ()
 main = do
@@ -32,8 +35,12 @@ main = do
 
   result <- postMessage (pack token) "bot-test" (pack message')
   case result of
-    Right _ -> putStrLn "Success!"
+    Right _ -> putStrLn "Success!" >> updateEntryJson jsonPath newCal
     Left  e -> putStrLn $ "Error: " `mappend` unpack e
+
+updateEntryJson :: FilePath -> Calendar -> IO ()
+updateEntryJson jsonPath newCal =
+  LT.writeFile jsonPath . toLazyText $ encodePrettyToTextBuilder newCal
 
 dates :: [Date]
 dates = fmap (\n -> pack $ mconcat ["12/", twoDigit n, show n]) [1..25]

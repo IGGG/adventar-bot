@@ -23,6 +23,7 @@ executable adventer-bot
   ghc-options: -Wall
   build-depends:
       aeson
+    , aeson-pretty
     , base >= 4.7 && < 5
     , bytestring
     , mtl
