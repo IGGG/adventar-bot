@@ -16,19 +16,19 @@ import           System.Environment (getArgs)
 
 main :: IO ()
 main = do
-  [htmlUrl, jsonPath, token] <- fmap pack <$> getArgs
-  catch (runBot htmlUrl jsonPath token) $
+  [htmlUrl, jsonPath, token, channel] <- fmap pack <$> getArgs
+  catch (runBot htmlUrl jsonPath token channel) $
     \e -> putStrLn ("Error: " `mappend` show (e :: IOException))
 
-runBot :: Url -> Text -> Token -> IO ()
-runBot htmlUrl jsonPath token = do
+runBot :: Url -> Text -> Token -> ChannelName -> IO ()
+runBot htmlUrl jsonPath token channel = do
   oldCal <- readEntryJson jsonPath
   newCal <- adventerScraper <$> fetchHtml htmlUrl
 
   let
     message = mkMessage oldCal newCal
 
-  result <- postMessage token "bot-test" (pack $ either id id message)
+  result <- postMessage token channel (pack $ either id id message)
   case result of
     Right _ -> putStrLn "Success!"
     Left  e -> putStrLn $ "Error: " `mappend` unpack e
