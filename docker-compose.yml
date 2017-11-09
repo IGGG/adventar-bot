@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  bot:
+    image: matsubara0507/adventar-bot
+    command: wait.sh adventar-bot "${HTML_URL}" "/config/entry.json" "${SLACK_CHANNEL}"
+    volumes:
+      - ./.circleci:/config
+    depends_on:
+      - selenium
+    networks:
+      - apps
+    environment:
+      LANG: C.utf-8
+      WD_HOST: selenium
+      WD_PORT: 4444
+      SLACK_TOKEN:
+  selenium:
+    image: hanhan1978/selenium-standalone-chrome-ja
+    networks:
+      - apps
+    ports: ["4444"]
+
+networks:
+  apps:
