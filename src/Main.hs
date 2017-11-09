@@ -2,8 +2,11 @@
 
 module Main where
 
+import           Control.Exception  (catch, IOException)
+import           Control.Monad      (when)
+import           Data.Either        (isRight)
 import           Data.List          (intersperse)
-import           Data.Text          (pack, unpack)
+import           Data.Text          (Text, pack, unpack)
 import           Entry
 import           Html
 import           Json
@@ -14,20 +17,31 @@ import           System.Environment (getArgs)
 main :: IO ()
 main = do
   [htmlUrl, jsonPath, token] <- fmap pack <$> getArgs
+  catch (runBot htmlUrl jsonPath token) $
+    \e -> putStrLn ("Error: " `mappend` show (e :: IOException))
 
+runBot :: Url -> Text -> Token -> IO ()
+runBot htmlUrl jsonPath token = do
   oldCal <- readEntryJson jsonPath
   newCal <- adventerScraper <$> fetchHtml htmlUrl
 
   let
-    message = unlines . filter ("" /=) $
-      (\date -> diffShow date oldCal newCal) <$> dates
-    message' = if null message then "No update..." else message
+    message = mkMessage oldCal newCal
 
-  result <- postMessage token "bot-test" (pack message')
+  result <- postMessage token "bot-test" (pack $ either id id message)
   case result of
-    Right _ -> putStrLn "Success!" >> updateEntryJson jsonPath newCal
+    Right _ -> putStrLn "Success!"
     Left  e -> putStrLn $ "Error: " `mappend` unpack e
 
+  when (isRight message && isRight result) $ updateEntryJson jsonPath newCal
+
+
+mkMessage :: Calendar -> Calendar -> Either String String
+mkMessage oldCal newCal =
+  if null message then Left "No update..." else Right message
+  where
+    message = unlines . filter ("" /=) $ mkMessage' <$> dates
+    mkMessage' date = diffShow date oldCal newCal
 
 diffShow :: Date -> Calendar -> Calendar -> String
 diffShow date = (.) (diffShow' date) . diff date
