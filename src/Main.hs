@@ -2,7 +2,7 @@
 
 module Main where
 
-import           Control.Exception  (catch, IOException)
+import           Control.Exception  (IOException, catch)
 import           Control.Monad      (when)
 import           Data.Either        (isRight)
 import           Data.List          (intersperse)
