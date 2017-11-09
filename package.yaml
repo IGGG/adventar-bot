@@ -1,6 +1,6 @@
-name:                adventer-bot
+name:                adventar-bot
 version:             0.1.0.0
-homepage:            https://github.com/matsubara0507/adventer-bot#readme
+homepage:            https://github.com/matsubara0507/adventar-bot#readme
 license:             MIT
 author:              MATSUBARA Nobutada
 copyright:           2017 MATSUBARA Nobutada
@@ -21,9 +21,9 @@ dependencies:
   - slack-api
   - text
   - unordered-containers
-  - webdriver 
+  - webdriver
 
 executables:
-  adventer-bot:
+  adventar-bot:
     source-dirs:      src
     main:             Main.hs

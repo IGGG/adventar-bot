@@ -9,8 +9,8 @@ import           Data.Text              (Text)
 import           Entry
 import           Text.HTML.Scalpel.Core
 
-adventerScraper :: Text -> Calendar
-adventerScraper txt = HM.fromList . fromMaybe [] . scrapeStringLike txt $
+adventarScraper :: Text -> Calendar
+adventarScraper txt = HM.fromList . fromMaybe [] . scrapeStringLike txt $
   chroot ("table" @: [hasClass "mod-entryList"]) (chroots "tr" scrapeEntryWithDate)
 
 scrapeEntryWithDate :: Scraper Text (Date, Entry)

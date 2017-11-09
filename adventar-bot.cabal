@@ -2,10 +2,10 @@
 --
 -- see: https://github.com/sol/hpack
 
-name:           adventer-bot
+name:           adventar-bot
 version:        0.1.0.0
 category:       Web
-homepage:       https://github.com/matsubara0507/adventer-bot#readme
+homepage:       https://github.com/matsubara0507/adventar-bot#readme
 author:         MATSUBARA Nobutada
 copyright:      2017 MATSUBARA Nobutada
 license:        MIT
@@ -16,7 +16,7 @@ cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
-executable adventer-bot
+executable adventar-bot
   main-is: Main.hs
   hs-source-dirs:
       src

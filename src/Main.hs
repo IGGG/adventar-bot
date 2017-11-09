@@ -23,7 +23,7 @@ main = do
 runBot :: Url -> Text -> Token -> ChannelName -> IO ()
 runBot htmlUrl jsonPath token channel = do
   oldCal <- readEntryJson jsonPath
-  newCal <- adventerScraper <$> fetchHtml htmlUrl
+  newCal <- adventarScraper <$> fetchHtml htmlUrl
 
   let
     message = mkMessage oldCal newCal
