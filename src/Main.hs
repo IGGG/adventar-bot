@@ -5,17 +5,18 @@ import           Data.Maybe         (fromMaybe)
 import           Data.String        (fromString)
 import           Scraper
 import           System.Environment (getArgs)
+import           Data.Text.Lazy.Encoding (encodeUtf8)
 import           Entry
 
 main :: IO ()
 main = do
   [htmlPath, jsonPath] <- getArgs
-  htmlFile <- readFile htmlPath
   jsonFile <- readFile jsonPath
+  htmlFile <- readFile htmlPath
 
   let
-    entrys1 = adventerScraper $ fromString htmlFile
-    entrys2 = fromMaybe emptyCalender . decode $ fromString jsonPath
+    oldCal = fromMaybe emptyCalender . decode . encodeUtf8 $ fromString jsonFile
+    newCal = adventerScraper $ fromString htmlFile
 
   print entrys1
   print entrys2
