@@ -18,7 +18,7 @@ jobs:
            name: Exec Bot
            command: |
             set -x
-            docker-compose up -d
+            /usr/local/bin/docker-compose up -d
 general:
   branches:
     only:
