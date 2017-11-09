@@ -10,7 +10,8 @@ jobs:
       - run:
           name: docker-compose up
           command: |
-            docker-compose -f ./docker-compose.yml up
+            docker-compose -f ./docker-compose.yml up -d
+            sleep 5
 
 general:
   branches:
