@@ -10,7 +10,7 @@ jobs:
       - run:
           name: docker-compose up
           command: |
-            docker-compose -f ./docker-compose.yml up -d
+            docker-compose -f ./docker-compose.yml up
 
 general:
   branches:
