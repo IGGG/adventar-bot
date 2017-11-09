@@ -12,9 +12,9 @@ dependencies:
   - aeson
   - base >= 4.7 && < 5
   - bytestring
-  - containers
   - scalpel-core
   - text
+  - unordered-containers
 
 executables:
   adventer-bot:

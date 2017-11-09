@@ -2,12 +2,10 @@ module Main where
 
 import           Data.Aeson         (decode)
 import           Data.Maybe         (fromMaybe)
-import           Data.Set           (Set)
-import qualified Data.Set           as Set
 import           Data.String        (fromString)
 import           Scraper
 import           System.Environment (getArgs)
-import           Types
+import           Entry
 
 main :: IO ()
 main = do
@@ -17,6 +15,7 @@ main = do
 
   let
     entrys1 = adventerScraper $ fromString htmlFile
-    entrys2 = fromMaybe Set.empty . decode $ fromString jsonPath :: Set Entry
+    entrys2 = fromMaybe emptyCalender . decode $ fromString jsonPath
 
-  print $ Set.difference entrys2 entrys1
+  print entrys1
+  print entrys2

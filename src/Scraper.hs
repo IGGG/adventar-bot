@@ -2,20 +2,22 @@
 
 module Scraper where
 
+import qualified Data.HashMap.Strict    as HM
 import           Data.Maybe             (fromMaybe)
-import           Data.Set               (Set)
-import qualified Data.Set               as Set
 import           Data.Text              (Text, pack, unpack)
+import           Entry
 import           Text.HTML.Scalpel.Core
-import           Types
 
-adventerScraper :: Text -> Set Entry
-adventerScraper txt = Set.fromList . fromMaybe [] . scrapeStringLike txt $
-  chroot ("table" @: [hasClass "mod-entryList"]) (chroots "tr" scrapeEntry)
+adventerScraper :: Text -> Calendar
+adventerScraper txt = HM.fromList . fromMaybe [] . scrapeStringLike txt $
+  chroot ("table" @: [hasClass "mod-entryList"]) (chroots "tr" scrapeEntryWithDate)
+
+scrapeEntryWithDate :: Scraper Text (Date, Entry)
+scrapeEntryWithDate = (,) <$> scrapeDate <*> scrapeEntry
 
 scrapeEntry :: Scraper Text Entry
-scrapeEntry = Entry <$>
-  scrapeDate <*> scrapeUser <*> scrapeComment <*> scrapeTitle <*> scrapeUrl
+scrapeEntry =
+  Entry <$> scrapeUser <*> scrapeComment <*> scrapeTitle <*> scrapeUrl
 
 scrapeDate :: Scraper Text Date
 scrapeDate = text ("th" @: [hasClass "mod-entryList-date"])
