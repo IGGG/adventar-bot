@@ -5,14 +5,12 @@ jobs:
     steps:
       - checkout
       - run:
-            name: login aws ecr
-            command: |
-                login="$(aws ecr get-login)"
-                ${login}
+          name: Build Docker Image
+          command: docker-compose build
       - run:
-            name: docker-compose up
-            command: |
-                 docker-compose -f ./docker-compose.yml up -d
+          name: docker-compose up
+          command: |
+            docker-compose -f ./docker-compose.yml up -d
 
 general:
   branches:
