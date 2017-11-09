@@ -35,6 +35,7 @@ executable adventer-bot
   other-modules:
       Entry
       Html
+      Json
       Scraper
       Slack
   default-language: Haskell2010

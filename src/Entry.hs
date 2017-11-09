@@ -6,7 +6,7 @@ import           Data.Aeson          (FromJSON, ToJSON)
 import           Data.Function       (on)
 import           Data.HashMap.Strict (HashMap)
 import qualified Data.HashMap.Strict as HM
-import           Data.Text           (Text)
+import           Data.Text           (Text, pack)
 import           GHC.Generics        (Generic)
 
 type Calendar = HashMap Date Entry
@@ -23,6 +23,12 @@ instance FromJSON Entry
 
 type Url = Text
 type Date = Text
+
+dates :: [Date]
+dates = fmap (\n -> pack $ mconcat ["12/", twoDigit n, show n]) [1..25]
+  where
+    twoDigit :: Int -> String
+    twoDigit n = if n `mod` 10 /= 0 then "0" else ""
 
 emptyCalender :: Calendar
 emptyCalender = HM.empty
