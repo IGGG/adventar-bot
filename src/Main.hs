@@ -1,12 +1,16 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main where
 
-import           Data.Aeson         (decode)
-import           Data.Maybe         (fromMaybe)
-import           Data.String        (fromString)
-import           Scraper
-import           System.Environment (getArgs)
+import           Data.Aeson              (decode)
+import           Data.List               (intersperse)
+import           Data.Maybe              (fromMaybe)
+import           Data.String             (fromString)
+import           Data.Text               (pack, unpack)
 import           Data.Text.Lazy.Encoding (encodeUtf8)
 import           Entry
+import           Scraper
+import           System.Environment      (getArgs)
 
 main :: IO ()
 main = do
@@ -18,5 +22,40 @@ main = do
     oldCal = fromMaybe emptyCalender . decode . encodeUtf8 $ fromString jsonFile
     newCal = adventerScraper $ fromString htmlFile
 
-  print entrys1
-  print entrys2
+  -- print oldCal
+  -- print newCal
+
+  putStrLn . unlines . filter ((/=) "") $
+    (\date -> diffShow date oldCal newCal) <$> dates
+
+dates :: [Date]
+dates = fmap (\n -> pack $ mconcat ["12/", twoDigit n, show n]) [1..25]
+  where
+    twoDigit :: Int -> String
+    twoDigit n = if n `mod` 10 /= 0 then "0" else ""
+
+diffShow :: Date -> Calendar -> Calendar -> String
+diffShow date = (.) (diffShow' date) . diff date
+
+diffShow' :: Date -> DiffEntry -> String
+diffShow' date diffEntry =
+  case diffEntry of
+    NewEntry newEntry ->
+      mconcat [unpack date, " [New]    ", ppEntry newEntry]
+    UpdateBody newEntry ->
+      mconcat [unpack date, " [Update] ", ppEntry newEntry]
+    RemoveEntry oldEntry ->
+      mconcat [unpack date, " [Remove] ", ppEntry oldEntry]
+    ChangeUser oldEntry newEntry ->
+      mconcat . intersperse "\n" $
+        diffShow' date <$> [RemoveEntry oldEntry, NewEntry newEntry]
+    NoChanged -> ""
+
+ppEntry :: Entry -> String
+ppEntry (Entry user' comment' title' url') =
+  mconcat [mkBody comment' title' url', " by ", unpack user']
+  where
+    mkBody "" _ ""          = unpack "No Comment..."
+    mkBody comment_ _ ""    = unpack comment_
+    mkBody comment_ "" url_ = unpack $ mconcat ["<", url_, "|", comment_, ">"]
+    mkBody _ title_ url_    = unpack $ mconcat ["<", url_, "|", title_, ">"]
