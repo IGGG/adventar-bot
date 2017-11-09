@@ -9,9 +9,10 @@ import           Test.WebDriver.Commands (getSource, openPage)
 
 type Html = Text
 
-fetchHtml :: Url -> IO Html
-fetchHtml url = runSession config $ do
+fetchHtml :: Text -> Text -> Url -> IO Html
+fetchHtml host port url = runSession config $ do
   openPage (unpack url)
   getSource
   where
-    config = useBrowser chrome defaultConfig
+    config = useBrowser chrome $ 
+      defaultConfig { wdHost = unpack host, wdPort = read (unpack port) }

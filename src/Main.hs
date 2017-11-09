@@ -12,18 +12,23 @@ import           Html
 import           Json
 import           Scraper
 import           Slack
-import           System.Environment (getArgs)
+import           System.Environment (getArgs, getEnv)
+
+import           GHC.IO.Encoding
 
 main :: IO ()
 main = do
-  [htmlUrl, jsonPath, token, channel] <- fmap pack <$> getArgs
-  catch (runBot htmlUrl jsonPath token channel) $
+  setLocaleEncoding utf8
+  [htmlUrl, jsonPath, channel] <- fmap pack <$> getArgs
+  [token, wdHost, wdPort] <- 
+    fmap pack <$> mapM getEnv ["SLACK_TOKEN", "WD_HOST", "WD_PORT"]
+  catch (runBot jsonPath htmlUrl (wdHost, wdPort) (token, channel)) $
     \e -> putStrLn ("Error: " `mappend` show (e :: IOException))
 
-runBot :: Url -> Text -> Token -> ChannelName -> IO ()
-runBot htmlUrl jsonPath token channel = do
+runBot :: Text -> Url -> (Text, Text) -> (Token, ChannelName) -> IO ()
+runBot jsonPath htmlUrl (wdHost, wdPort) (token, channel) = do
   oldCal <- readEntryJson jsonPath
-  newCal <- adventarScraper <$> fetchHtml htmlUrl
+  newCal <- adventarScraper <$> fetchHtml wdHost wdPort htmlUrl
 
   let
     message = mkMessage oldCal newCal
