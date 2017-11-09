@@ -31,8 +31,10 @@ executable adventer-bot
     , slack-api
     , text
     , unordered-containers
+    , webdriver
   other-modules:
       Entry
+      Html
       Scraper
       Slack
   default-language: Haskell2010

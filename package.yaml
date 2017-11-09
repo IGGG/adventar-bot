@@ -21,6 +21,7 @@ dependencies:
   - slack-api
   - text
   - unordered-containers
+  - webdriver 
 
 executables:
   adventer-bot:

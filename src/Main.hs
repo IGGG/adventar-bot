@@ -12,19 +12,20 @@ import           Data.Text.Lazy.Builder   (toLazyText)
 import           Data.Text.Lazy.Encoding  (encodeUtf8)
 import qualified Data.Text.Lazy.IO        as LT
 import           Entry
+import           Html
 import           Scraper
 import           Slack
 import           System.Environment       (getArgs)
 
 main :: IO ()
 main = do
-  [htmlPath, jsonPath, token] <- getArgs
+  [htmlUrl, jsonPath, token] <- getArgs
   jsonFile <- readFile jsonPath
-  htmlFile <- readFile htmlPath
+  htmlFile <- fetchHtml $ pack htmlUrl
 
   let
     oldCal = fromMaybe emptyCalender . decode . encodeUtf8 $ fromString jsonFile
-    newCal = adventerScraper $ fromString htmlFile
+    newCal = adventerScraper htmlFile
     message = unlines . filter ("" /=) $
       (\date -> diffShow date oldCal newCal) <$> dates
     message' = if null message then "No update..." else message
