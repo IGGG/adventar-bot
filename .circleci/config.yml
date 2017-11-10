@@ -8,6 +8,11 @@ jobs:
             - "54:02:33:28:1b:1f:fd:93:44:fd:52:93:22:e3:f5:ad"
       - checkout
       - run:
+          name: Git config
+          command: |
+             git config --global user.email "example@example.com"
+             git config --global user.name "Bot"
+      - run:
           name: Build Docker Image
           command: docker-compose build
       - run:
@@ -21,7 +26,6 @@ jobs:
             git add .
             git commit -m "[skip ci] Update entry.json"
             git push origin dump
-
 
 workflows:
   version: 2
