@@ -22,6 +22,18 @@ jobs:
             git commit -m "[skip ci] Update entry.json"
             git push origin dump
 
+workflows:
+  version: 2
+  normal_workflow:
+    jobs:
+      - deploy
+  nightly_workflow:
+    triggers:
+      - schedule:
+          cron: "30 * * * *" # UTCで記述。この場合は朝10時
+    jobs:
+      - deploy
+
 general:
   branches:
     only:
