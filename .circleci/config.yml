@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Push update json
           command: |
-            git statu
+            git status
             git commit -am "[skip ci] Update entry.json"
             git push origin dump
 
