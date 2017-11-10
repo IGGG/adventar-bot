@@ -13,8 +13,7 @@ jobs:
       - run:
           name: docker-compose up
           command: |
-            docker-compose -f ./docker-compose.yml up
-            sleep 5
+            docker-compose -f ./docker-compose.yml run bot
             git status
 
 general:
