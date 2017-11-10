@@ -1,25 +1,45 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
-    docker:
-      - image: docker:17.09.0-ce-git
+    machine: true
     steps:
+      - add-ssh-keys:
+          fingerprints:
+            - "99:5c:f8:55:4d:2c:ab:aa:3a:e6:4b:73:1b:07:19:98"
       - checkout
-      - setup_remote_docker
       - run:
-          name: Install Docker Compose
+          name: Git config
           command: |
-            set -x
-            apt-get install curl -y
-            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            chmod +x /usr/local/bin/docker-compose
+             git config --global user.email "example@example.com"
+             git config --global user.name "Bot"
       - run:
-           name: Exec Bot
-           command: |
-            set -x
-            docker-compose up -d
-general:
-  branches:
-    only:
-      - dump
+          name: Build Docker Image
+          command: docker-compose build
+      - run:
+          name: docker-compose up
+          command: |
+            docker-compose -f ./docker-compose.yml run bot
+      - run:
+          name: Push update json
+          command: |
+            git status
+            git diff --quiet && git diff --staged --quiet || git commit -am "[skip ci] Update entry.json"
+            git push origin dump
+
+workflows:
+  version: 2
+  normal_workflow:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: dump
+  nightly_workflow:
+    triggers:
+      - schedule:
+          cron: "0 0,12 * * *"
+          filters:
+            branches:
+              only: dump
+    jobs:
+      - build
