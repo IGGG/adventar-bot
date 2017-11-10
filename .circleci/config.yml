@@ -22,7 +22,21 @@ jobs:
             git commit -m "[skip ci] Update entry.json"
             git push origin dump
 
-general:
-  branches:
-    only:
-      - dump
+
+workflows:
+  version: 2
+  normal_workflow:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: dump
+  nightly_workflow:
+    triggers:
+      - schedule:
+          cron: "30 * * * *"
+          filters:
+            branches:
+              only: dump
+    jobs:
+      - build
