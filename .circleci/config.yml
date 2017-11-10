@@ -37,7 +37,7 @@ workflows:
   nightly_workflow:
     triggers:
       - schedule:
-          cron: "30 * * * *"
+          cron: "0 0,12 * * *"
           filters:
             branches:
               only: dump
