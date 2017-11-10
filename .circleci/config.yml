@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  deploy:
+  build:
     machine: true
     steps:
       - add-ssh-keys:
@@ -26,13 +26,13 @@ workflows:
   version: 2
   normal_workflow:
     jobs:
-      - deploy
+      - build
   nightly_workflow:
     triggers:
       - schedule:
           cron: "30 * * * *"
     jobs:
-      - deploy
+      - build
 
 general:
   branches:
