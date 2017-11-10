@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  deploy:
     machine: true
     steps:
       - add-ssh-keys:
@@ -14,8 +14,9 @@ jobs:
           name: docker-compose up
           command: |
             docker-compose -f ./docker-compose.yml run bot
-       - run:
-           name: Push update json
+      - run:
+          name: Push update json
+          command: |
             git status
             git add .
             git commit -m "[skip ci] Update entry.json"
