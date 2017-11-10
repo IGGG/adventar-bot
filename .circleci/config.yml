@@ -14,7 +14,12 @@ jobs:
           name: docker-compose up
           command: |
             docker-compose -f ./docker-compose.yml run bot
+       - run:
+           name: Push update json
             git status
+            git add .
+            git commit -m "[skip ci] Update entry.json"
+            git push origin dump
 
 general:
   branches:
