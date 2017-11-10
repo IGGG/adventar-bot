@@ -24,7 +24,7 @@ jobs:
           command: |
             git status
             git commit -am "[skip ci] Update entry.json"
-            git push origin dump
+            # git push origin dump
 
 workflows:
   version: 2
