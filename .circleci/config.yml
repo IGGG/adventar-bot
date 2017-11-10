@@ -3,6 +3,9 @@ jobs:
   build:
     machine: true
     steps:
+      - add-ssh-keys:
+          fingerprints:
+            - "54:02:33:28:1b:1f:fd:93:44:fd:52:93:22:e3:f5:ad"
       - checkout
       - run:
           name: Build Docker Image
@@ -12,6 +15,7 @@ jobs:
           command: |
             docker-compose -f ./docker-compose.yml up -d
             sleep 5
+            git status
 
 general:
   branches:
