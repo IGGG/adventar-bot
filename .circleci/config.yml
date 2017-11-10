@@ -30,7 +30,7 @@ workflows:
   nightly_workflow:
     triggers:
       - schedule:
-          cron: "30 * * * *" # UTCで記述。この場合は朝10時
+          cron: "30 * * * *"
     jobs:
       - deploy
 
