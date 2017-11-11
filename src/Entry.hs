@@ -28,7 +28,7 @@ dates :: [Date]
 dates = fmap (\n -> pack $ mconcat ["12/", twoDigit n, show n]) [1..25]
   where
     twoDigit :: Int -> String
-    twoDigit n = if n `mod` 10 /= 0 then "0" else ""
+    twoDigit n = if n `div` 10 == 0 then "0" else ""
 
 emptyCalender :: Calendar
 emptyCalender = HM.empty
