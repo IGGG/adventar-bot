@@ -38,7 +38,10 @@ runBot jsonPath htmlUrl (wdHost, wdPort) (token, channel) = do
     Right _ -> putStrLn "Success!"
     Left  e -> putStrLn $ "Error: " `mappend` unpack e
 
-  when (isRight message && isRight result) $ updateEntryJson jsonPath newCal
+  when (isRight message && isRight result) $ do
+    putStrLn "Update Json"
+    updateEntryJson jsonPath newCal
+    putStrLn "Updated Json"
 
 
 mkMessage :: Calendar -> Calendar -> Either String String
