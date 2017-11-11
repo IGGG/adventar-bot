@@ -16,7 +16,7 @@ services:
       WD_PORT: 4444
       SLACK_TOKEN:
   selenium:
-    image: hanhan1978/selenium-standalone-chrome-ja
+    image: selenium/standalone-chrome
     networks:
       - apps
     ports: ["4444"]
