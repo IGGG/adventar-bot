@@ -2,5 +2,5 @@
 
 set -e
 
-sleep 1
+sleep 2
 $@
