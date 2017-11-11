@@ -12,6 +12,13 @@ jobs:
           command: |
              git config --global user.email "example@example.com"
              git config --global user.name "Bot"
+      - restore_cache:
+          key: docker-{{ .Branch }}-{{ checksum "docker-compose.yml" }}
+          paths: ~/caches/images.tar
+      - run:
+          command: |
+            set +o pipefail
+            docker load -i ~/caches/images.tar | true
       - run:
           name: Build Docker Image
           command: docker-compose pull
@@ -19,6 +26,13 @@ jobs:
           name: docker-compose run bot
           command: |
             docker-compose -f ./docker-compose.yml run bot
+      - run:
+          command: |
+            mkdir -p ~/caches
+            docker save $(docker images -q) -o ~/caches/images.tar
+      - save_cache:
+          key: docker-{{ .Branch }}-{{ checksum "docker-compose.yml" }}
+          paths: ~/caches/images.tar
       - run:
           name: Push update json
           command: |
