@@ -27,13 +27,19 @@
         "url": "",
         "user": "atpons",
         "title": "",
-        "comment": "素人がWordPressを使うのはもう，やめにしよう。"
+        "comment": "まだWordPressで消耗してるの？"
     },
     "12/02": {
         "url": "",
         "user": "ひげ",
         "title": "",
-        "comment": "Re: ゼロから作る ADVENTAR の Slakc Bot (Haskell 編)"
+        "comment": "Re: ゼロから作る ADVENTAR の Slack Bot (Haskell 編)"
+    },
+    "12/14": {
+        "url": "",
+        "user": "sakuragiyuuto",
+        "title": "",
+        "comment": "自分話"
     },
     "12/08": {
         "url": "",
@@ -41,11 +47,35 @@
         "title": "",
         "comment": "レポートをね、書いていきましょう"
     },
+    "12/11": {
+        "url": "",
+        "user": "ziyuu-japan",
+        "title": "",
+        "comment": "OSっぽい何かを作ってみた"
+    },
+    "12/03": {
+        "url": "",
+        "user": "sakuragiyuuto",
+        "title": "",
+        "comment": "C#関連のお話2(仮)"
+    },
+    "12/17": {
+        "url": "",
+        "user": "sakuragiyuuto",
+        "title": "",
+        "comment": "C#関連のお話3(仮)"
+    },
+    "12/10": {
+        "url": "",
+        "user": "sakuragiyuuto",
+        "title": "",
+        "comment": "C#関連のお話2(仮)"
+    },
     "12/09": {
         "url": "",
         "user": "ひげ",
         "title": "",
-        "comment": "Re: ゼロから作る ADVENTAR の Slakc Bot (CircleCI 編)"
+        "comment": "Re: ゼロから作る ADVENTAR の Slack Bot (CircleCI 編)"
     },
     "12/04": {
         "url": "",
@@ -57,6 +87,6 @@
         "url": "",
         "user": "ひげ",
         "title": "",
-        "comment": "Re: ゼロから作る ADVENTAR の Slakc Bot (GAS 編)"
+        "comment": "Re: ゼロから作る ADVENTAR の Slack Bot (GAS 編)"
     }
 }
