@@ -5,6 +5,12 @@
         "title": "",
         "comment": "Clojureはじめました"
     },
+    "12/24": {
+        "url": "",
+        "user": "atpons",
+        "title": "",
+        "comment": "アレがこの頃にはできてるはず…"
+    },
     "12/06": {
         "url": "",
         "user": "atpons",
@@ -34,6 +40,12 @@
         "user": "atpons",
         "title": "",
         "comment": "LINE Messaging API覚え書き"
+    },
+    "12/25": {
+        "url": "",
+        "user": "atpons",
+        "title": "",
+        "comment": "桐生の一人暮らし寒すぎて凍りそうな話"
     },
     "12/07": {
         "url": "",
@@ -112,5 +124,11 @@
         "user": "ひげ",
         "title": "",
         "comment": "Re: ゼロから作る ADVENTAR の Slack Bot (GAS 編)"
+    },
+    "12/13": {
+        "url": "",
+        "user": "atpons",
+        "title": "",
+        "comment": "SlackからMattermostへのemojiインポートについて"
     }
 }
