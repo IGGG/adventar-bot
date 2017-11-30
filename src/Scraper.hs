@@ -5,7 +5,7 @@ module Scraper where
 import           Control.Applicative    ((<|>))
 import qualified Data.HashMap.Strict    as HM
 import           Data.Maybe             (fromMaybe)
-import           Data.Text              (Text)
+import           Data.Text              (Text, strip)
 import           Entry
 import           Text.HTML.Scalpel.Core
 
@@ -27,10 +27,10 @@ scrapeUser :: Scraper Text Text
 scrapeUser = "td" @: [hasClass "mod-entryList-user"] `chroot` text "span"
 
 scrapeComment :: Scraper Text Text
-scrapeComment = text ("div" @: [hasClass "mod-entryList-comment"])
+scrapeComment = fmap strip $ text ("div" @: [hasClass "mod-entryList-comment"])
 
 scrapeTitle :: Scraper Text Text
-scrapeTitle =
+scrapeTitle = fmap strip $
   text ("div" @: [hasClass "mod-entryList-title", notHidden]) <|> pure ""
 
 scrapeUrl :: Scraper Text Url
