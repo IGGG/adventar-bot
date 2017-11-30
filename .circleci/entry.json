@@ -1,32 +1,152 @@
 {
+    "12/22": {
+        "url": "",
+        "user": "natuRulO",
+        "title": "",
+        "comment": "Clojureはじめました"
+    },
+    "12/19": {
+        "url": "",
+        "user": "natuRulO",
+        "title": "",
+        "comment": "同期とやる勉強会を企画した話"
+    },
+    "12/12": {
+        "url": "",
+        "user": "syoukaki",
+        "title": "",
+        "comment": "なにかします"
+    },
+    "12/24": {
+        "url": "",
+        "user": "atpons",
+        "title": "",
+        "comment": "アレがこの頃にはできてるはず…"
+    },
+    "12/06": {
+        "url": "",
+        "user": "atpons",
+        "title": "",
+        "comment": "フレッツ光ユーザーに捧げるSEIL/x86入門"
+    },
     "12/01": {
         "url": "",
         "user": "atpons",
         "title": "",
-        "comment": "まだコンピューティングルームにいるの？"
+        "comment": "未定"
+    },
+    "12/23": {
+        "url": "",
+        "user": "ziyuu-japan",
+        "title": "",
+        "comment": "zynqいじる"
+    },
+    "12/18": {
+        "url": "",
+        "user": "ziyuu-japan",
+        "title": "",
+        "comment": "3dプリンタ買ったのでロボットアームつくってみた"
+    },
+    "12/15": {
+        "url": "",
+        "user": "atpons",
+        "title": "",
+        "comment": "LINE Messaging API覚え書き"
+    },
+    "12/25": {
+        "url": "",
+        "user": "atpons",
+        "title": "",
+        "comment": "桐生の一人暮らし寒すぎて凍りそうな話"
+    },
+    "12/07": {
+        "url": "",
+        "user": "atpons",
+        "title": "",
+        "comment": "まだWordPressで消耗してるの？"
+    },
+    "12/20": {
+        "url": "",
+        "user": "natuRulO",
+        "title": "",
+        "comment": "GASでGoogle Driveをいじる"
     },
     "12/02": {
         "url": "",
         "user": "ひげ",
         "title": "",
-        "comment": "Re: ゼロから作る ADVENTAR の Slakc Bot (Haskell 編)"
+        "comment": "Re: ゼロから作る ADVENTAR の Slack Bot (Haskell 編)"
+    },
+    "12/14": {
+        "url": "",
+        "user": "sakuragiyuuto",
+        "title": "",
+        "comment": "自分話"
     },
     "12/08": {
         "url": "",
         "user": "atpons",
         "title": "",
-        "comment": ""
+        "comment": "レポートをね、書いていきましょう"
+    },
+    "12/11": {
+        "url": "",
+        "user": "ziyuu-japan",
+        "title": "",
+        "comment": "OSっぽい何かを作ってみた"
+    },
+    "12/03": {
+        "url": "",
+        "user": "sakuragiyuuto",
+        "title": "",
+        "comment": "C#関連のお話1(仮)"
+    },
+    "12/21": {
+        "url": "",
+        "user": "natuRulO",
+        "title": "",
+        "comment": "GASでGoogle Earth Tourを作る"
+    },
+    "12/17": {
+        "url": "",
+        "user": "sakuragiyuuto",
+        "title": "",
+        "comment": "C#関連のお話3(仮)"
+    },
+    "12/10": {
+        "url": "",
+        "user": "sakuragiyuuto",
+        "title": "",
+        "comment": "C#関連のお話2(仮)"
     },
     "12/09": {
         "url": "",
         "user": "ひげ",
         "title": "",
-        "comment": "Re: ゼロから作る ADVENTAR の Slakc Bot (CircleCI 編)"
+        "comment": "Re: ゼロから作る ADVENTAR の Slack Bot (CircleCI 編)"
+    },
+    "12/04": {
+        "url": "",
+        "user": "ziyuu-japan",
+        "title": "",
+        "comment": "arduinoでマイクロサーボを動かしてみよう"
     },
     "12/16": {
         "url": "",
         "user": "ひげ",
         "title": "",
-        "comment": "Re: ゼロから作る ADVENTAR の Slakc Bot (GAS 編)"
+        "comment": "Re: ゼロから作る ADVENTAR の Slack Bot (GAS 編)"
+    },
+    "12/13": {
+        "url": "",
+        "user": "atpons",
+        "title": "",
+        "comment": "SlackからMattermostへのemojiインポートについて"
+    },
+    "12/05": {
+        "url": "",
+        "user": "Fujimura0211",
+        "title": "",
+        "comment": "コイルの巻線機の話"
     }
 }

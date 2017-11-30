@@ -14,9 +14,9 @@ jobs:
              git config --global user.name "Bot"
       - run:
           name: Build Docker Image
-          command: docker-compose build
+          command: docker-compose pull
       - run:
-          name: docker-compose up
+          name: docker-compose run bot
           command: |
             docker-compose -f ./docker-compose.yml run bot
       - run:
@@ -37,7 +37,7 @@ workflows:
   nightly_workflow:
     triggers:
       - schedule:
-          cron: "0 0,12 * * *"
+          cron: "0 0 * * *"
           filters:
             branches:
               only: dump
