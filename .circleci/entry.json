@@ -27,7 +27,7 @@
         "url": "",
         "user": "atpons",
         "title": "",
-        "comment": "フレッツ光ユーザーに捧げるSEIL/x86入門"
+        "comment": "ポエム"
     },
     "12/01": {
         "url": "https://hackmd.io/s/r1FK4Lhef",
@@ -144,9 +144,9 @@
         "comment": "SlackからMattermostへのemojiインポートについて"
     },
     "12/05": {
-        "url": "",
+        "url": "https://gist.github.com/Fujimura0211/e020bcbcc6430231fd6d3fde3c91659d",
         "user": "Fujimura0211",
-        "title": "",
+        "title": "真空管アンプ用トランスの巻線機を作ったよ · GitHub",
         "comment": "コイルの巻線機の話"
     }
 }
