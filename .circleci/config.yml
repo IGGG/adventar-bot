@@ -34,12 +34,12 @@ workflows:
           filters:
             branches:
               only: dump
-  nightly_workflow:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only: dump
-    jobs:
-      - build
+#  nightly_workflow:
+#    triggers:
+#      - schedule:
+#          cron: "0 0 * * *"
+#          filters:
+#            branches:
+#              only: dump
+#    jobs:
+#      - build
